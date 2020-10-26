@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/xu.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -196,14 +196,6 @@
 
   
   
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
 </div>
 
             
@@ -239,8 +231,8 @@
 <li><p>大多数情况下，如果两边的运算元不是数值型的话，则会将两边的运算元先转换为数值型(前提是可以被转为数值)，然后再进行运算</p>
 </li>
 <li><p>如果不能转换为数值，则一般都是NaN</p>
-<pre><code class="hljs js"><span class="hljs-literal">undefined</span> + <span class="hljs-number">1</span>  <span class="hljs-comment">// NaN</span>
-<span class="hljs-string">&quot;4px&quot;</span> - <span class="hljs-number">2</span> <span class="hljs-comment">// NaN</span></code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-literal">undefined</span> + <span class="hljs-number">1</span>  <span class="hljs-comment">// NaN</span>
+<span class="hljs-string">&quot;4px&quot;</span> - <span class="hljs-number">2</span> <span class="hljs-comment">// NaN</span></code></pre></div>
 
 
 </li>
@@ -248,8 +240,8 @@
 <h5 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h5><p>加法运算符(+)：</p>
 <ul>
 <li><p>当两边其中有一边为字符串，另一个会转化为字符串，俗称”拼接”</p>
-<pre><code class="hljs js"><span class="hljs-number">123</span> + <span class="hljs-string">&quot;$&quot;</span><span class="hljs-comment">// $123</span>
-<span class="hljs-string">&quot; -9 &quot;</span> + <span class="hljs-number">5</span> <span class="hljs-comment">// &quot; -9 5&quot;</span></code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-number">123</span> + <span class="hljs-string">&quot;$&quot;</span><span class="hljs-comment">// $123</span>
+<span class="hljs-string">&quot; -9 &quot;</span> + <span class="hljs-number">5</span> <span class="hljs-comment">// &quot; -9 5&quot;</span></code></pre></div>
 
 </li>
 </ul>
@@ -383,6 +375,30 @@
         <span>Fluid</span></a>
     </div>
     
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
     
 
