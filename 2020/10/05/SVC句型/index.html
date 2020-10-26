@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Gan Yurou">
+  <meta name="keywords" content="">
+  <title>主谓补(SVC)|主谓宾宾补(SVOC) - Yurou&#39;s 小栈</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/zenburn.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>甘甘の小栈</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/GanYuRou/PictureBed@main/img/sky.webp') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-05 11:00" pubdate>
+        2020年10月5日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">主谓补(SVC)|主谓宾宾补(SVOC)</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <div class="note note-success">
+            <p>从来没想过英语中的主谓补(也就是我们熟悉的主系表)会和主谓宾宾补有千丝万缕的关系。这两个句式隶属于五大基本句型，掌握简单句也是很重要的喔。我曾经认为简单句无需花费什么心思，但是当面对各种长难句，大概意思一知半解。有时面对一些简单句，也并不能说出个所以然来，所以打算整理为笔记，梳理自己对语法的理解。</p>
+          </div>
+
+<h2 id="1-SVC-主谓补"><a href="#1-SVC-主谓补" class="headerlink" title="1. SVC(主谓补)"></a>1. SVC(主谓补)</h2><p>英语中有这么一类动词是系动词，它和实义动词是不一样的。(补充一点：为什么会只有五个基本句型，实际是因为有<strong>五种特性不同的动词</strong>)</p>
+<h3 id="1-1-实意动词-VS-系动词"><a href="#1-1-实意动词-VS-系动词" class="headerlink" title="1.1 实意动词 VS 系动词"></a>1.1 实意动词 VS 系动词</h3><p>一句话，说白了就是传递某件事情的信息，是要有实际的意义。而主语通常是叙述的对象，谓语是构成叙述的主要内容；这也就能解释为什么一句话必须要有主谓，其他成分或许可有可无。</p>
+<h4 id="1-1-1-实意动词"><a href="#1-1-1-实意动词" class="headerlink" title="1.1.1 实意动词"></a>1.1.1 实意动词</h4><p>接触过英语的你肯定知道实意动词包括及物动词和不及物动词。但是，或许有人不知道这两类动词的区别。</p>
+<h5 id="一-、不及物动词"><a href="#一-、不及物动词" class="headerlink" title="一 、不及物动词"></a><strong>一 、不及物动词</strong></h5><p>可独立发生，不牵涉到其他的人或物。而主语是该动作的发出者，故该类动词只有主动，没有被动（这也就是主谓结构）</p>
+<div class="note note-danger">
+            <p>Tom died in World War Two.</p><p>这句话的叙述对象是Tom，也就是讲了一件关于Tom的事情。什么事情呢？”死了”，这就是整件事的核心内容，后面的成分是时间状语，修饰谓语动词，使得这件事描述的更详细点，是死于第二次世界大战，不是其他的时间点。</p>
+          </div>
+
+<h5 id="二、及物动词"><a href="#二、及物动词" class="headerlink" title="二、及物动词"></a><strong>二、及物动词</strong></h5><p>不独立发生，需要作用在其他的人或物上(也就是宾语)，要不然意思会不完整。因为有该动作的承受对象，所以该类动词是有被动的语态。</p>
+<div class="note note-danger">
+            <p>Tom ate a host of desserts.</p><p>同理，”吃”是整件事的核心内容，但是，需要有东西被吃，才能使这件事叙述完整。而零食就是宾语</p>
+          </div>
+
+<p>总结一下，实意动词是有实际意思的，是构成叙述的主要内容，是一句话的关键。尽管及物动词后面不带宾语，是错误的结构，但是也是能表达一定的意思，只是该意思并不完全。</p>
+<hr>
+<h4 id="1-1-2-系动词"><a href="#1-1-2-系动词" class="headerlink" title="1.1.2 系动词"></a>1.1.2 系动词</h4><p><strong>在所有的英语动词中，只有解释为”是”的动词是空的，完全没有意义。</strong>而系动词，就是这类动词，没有叙述能力，只是把主语和后面构成叙述的部分连接起来，又可称为”连缀动词”(Link Verb)。跟在这种动词后面的部分，代替了动词的作用，补足句子使它获得完整的意思，称之为”补语”。而SVC句式中的V指的就是系动词。</p>
+<div class="note note-danger">
+            <p>John Smith was a soldier.</p><p>was这个动词并没有告诉我们关于John Smith任何事情，叙述主要内容落在了a soldier上，而a soldier充当主语的补语，即为主补。was只是作为中间物，将前者和后者画上等号，串联起来。</p>
+          </div>
+
+<h5 id="一、系动词的分类"><a href="#一、系动词的分类" class="headerlink" title="一、系动词的分类"></a><strong>一、系动词的分类</strong></h5><ul>
+<li>状态系动词：be动词(记住，所有的时态哦，不要单单只以为是现在时态) —-&gt;  翻译为”是”</li>
+<li>感官系动词：look/smell/taste/feel/sound </li>
+<li>表像系动词：appear/seem —-&gt;  翻译为”显得是，似乎是”</li>
+<li>变化系动词：become/turn/get/fall/run/come/go/grow  —-&gt;  翻译为”成为”</li>
+<li>持续系动词：keep/remain/stay/stand —-&gt;  翻译为”保持为”</li>
+<li>终止系动词：prove/turn out —-&gt;  翻译为”结果是”</li>
+<li>make  —-&gt;  翻译为”作为”</li>
+</ul>
+<p>可能此时的你会有疑惑，这不是翻译出实际的意思出来了吗，但是不是这样的哦，它们的着重点还是”是”，只不过翻译中，可以解释为各种各样的”是”，从而让你的表达更准确。**(所以说，任何be出现的地方，都可以换做下面的词)**</p>
+<div class="note note-danger">
+            <p>That dress is pretty  那件裙子很漂亮</p><p>That dress looks pretty  那件裙子看上去很漂亮</p><p>其实两句话等同，但第二句话明显比第一句高级了那么一丢丢</p>
+          </div>
+
+<h5 id="二、不必翻译"><a href="#二、不必翻译" class="headerlink" title="二、不必翻译"></a>二、不必翻译</h5><div class="note note-danger">
+            <p>I am more than delighted.  我非常开心</p>
+          </div>
+
+<p>这句话的翻译，完全没有动词的出现。当然，在汉语中，这么说是完全没有语法错误。但是，在英语中，谓语是一定一定不能少的，即使它并没有意思。这也就充分表现出来，翻译为”是”的动词，是没有实际意义的。</p>
+<p><strong>So，当你在写作或翻译时，如果一句话没有谓语(动词)的话，请想一想我们的系动词，它或许能派上用场。</strong></p>
+<hr>
+<h4 id="1-1-3-小小总结一下"><a href="#1-1-3-小小总结一下" class="headerlink" title="1.1.3 小小总结一下"></a>1.1.3 小小总结一下</h4><p>本来只想说说系动词，因为下面的句型成分有些相似，但是想补充一番动词的重要性，所以不知不觉就讲了这么多，也不知道会不会显得很多余。虽然我举的例子都超级简单，但是我觉得很有代表。</p>
+<h2 id="2-SVOOC-主谓宾宾补"><a href="#2-SVOOC-主谓宾宾补" class="headerlink" title="2. SVOOC(主谓宾宾补)"></a>2. SVOOC(主谓宾宾补)</h2><p>前面花了那么多心思，主要也是为这里做准备。前面说到的SVC，后面的补语是对主语进行说明的(应该可以理解为主补吧？)，那么对于SVOOC，宾补是对宾语进行补充说明的，只是之间没有连缀动词了。因为，一句话中只能有一个谓语动词喔，既然这个句型本身自带了谓语动词，也就不需要多余的动词了。</p>
+<div class="note note-danger">
+            <p>Most people consider a nurse a good wife.   大多数的人认为护士会是称职的太太</p>
+          </div>
+
+<p>进一步的扩展一下下，之前我对双宾和宾补有些模糊，现在有了很清晰的定位：宾补是对宾语的补充说明，则两者是一定有联系的，我们这里可以将宾和宾补抽离出来，中间添加一个系动词，形成SVC结构，如果翻译得通，则就是宾补。双宾后面会有笔记，但可以肯定，两个宾语之间是没有联系的。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%8B%B1%E8%AF%AD/">英语</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">基础语法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/25/Object%E7%B1%BB%E5%9E%8B%E5%88%9B%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Object|Array之实例创建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/04/JS%E4%B9%8B%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                        <span class="hidden-mobile">隐式类型转换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "主谓补(SVC)|主谓宾宾补(SVOC)&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
