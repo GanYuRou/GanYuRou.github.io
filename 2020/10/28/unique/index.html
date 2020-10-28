@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Gan Yurou">
   <meta name="keywords" content="">
-  <title>Object|Array之实例创建 - Yurou&#39;s 小栈</title>
+  <title>JS之数组去重 - Yurou&#39;s 小栈</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,7 +152,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/GanYuRou/PictureBed@main/img/bamboo.webp') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/GanYuRou/PictureBed@main/img/ocean.webp') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -167,8 +167,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-25 19:24" pubdate>
-        2020年10月25日 晚上
+      <time datetime="2020-10-28 12:00" pubdate>
+        2020年10月28日 中午
       </time>
     </span>
   
@@ -179,7 +179,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      486 字
+      405 字
     </span>
   
 
@@ -189,7 +189,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -219,44 +219,52 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Object|Array之实例创建</h1>
+            <h1 style="display: none">JS之数组去重</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="1-对象实例的创建"><a href="#1-对象实例的创建" class="headerlink" title="1.对象实例的创建"></a>1.对象实例的创建</h3><h4 id="1-new操作符"><a href="#1-new操作符" class="headerlink" title="1.new操作符"></a>1.new操作符</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> person = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();
-<span class="hljs-comment">//可以通过访问属性来动态创建属性</span>
-person.name = <span class="hljs-string">&quot;Sarry&quot;</span>;
-person.age = <span class="hljs-number">20</span>;</code></pre></div>
+              <h2 id="方法一：Set集合"><a href="#方法一：Set集合" class="headerlink" title="方法一：Set集合"></a>方法一：Set集合</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate1</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(arr)];
+&#125;
+<span class="hljs-built_in">console</span>.log(eliminate1(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN]</span></code></pre></div>
 
-<h4 id="2-对象字面量-使用较多"><a href="#2-对象字面量-使用较多" class="headerlink" title="2.对象字面量(使用较多)"></a>2.对象字面量(使用较多)</h4><p>对象定义的简写形式，目的在于简化创建大量的属性的对象的过程。但是需要注意的是，对象字面量的创建并不会调用Object的构造函数</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> individual = &#123;
-    name: <span class="hljs-string">&quot;Sarry&quot;</span>,
-    age: <span class="hljs-number">20</span>
+<p>Set构造器可以传入一个<code>可迭代的对象</code>，这时Set会自动将重复的元素移除，但是此时返回的是Set集合；直接返回是不对的，需要将该集合<code>转化为数组</code>，ES6中可以通过展开语法符展开，并使用数组字面量接收</p>
+<h2 id="方法二-：indexOf方法"><a href="#方法二-：indexOf方法" class="headerlink" title="方法二 ：indexOf方法"></a>方法二 ：indexOf方法</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate2</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> result = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = arr.length; i &lt; len; i++) &#123;
+        result.indexOf(arr[i]) === <span class="hljs-number">-1</span> &amp;&amp; result.push(arr[i]);
+    &#125;
+    <span class="hljs-keyword">return</span> result;
+&#125;
+<span class="hljs-built_in">console</span>.log(eliminate2(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN，NaN]</span></code></pre></div>
+
+<p>这里有一个奇怪的点：NaN并不会被移除重复的，这是为什么呢？<code>NaN == NaN返回的是false</code>，indexOf方法的内部是通过===进行筛选的，故NaN永远都会返回-1，每一项NaN都会添加到result数组中。</p>
+<h2 id="方法三-：filter方法"><a href="#方法三-：filter方法" class="headerlink" title="方法三 ：filter方法"></a>方法三 ：filter方法</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate3</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> arr.filter(<span class="hljs-function">(<span class="hljs-params">item, index, array</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">return</span> array.indexOf(item) === index;
+    &#125;);
+&#125;
+<span class="hljs-built_in">console</span>.log(eliminate3(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0]</span></code></pre></div>
+
+<p>这里没有NaN就不会觉得奇怪了；array.indexOf(NaN) == -1不会等于原始项的下标</p>
+<h2 id="方法四-：reduce方法"><a href="#方法四-：reduce方法" class="headerlink" title="方法四 ：reduce方法"></a>方法四 ：reduce方法</h2><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate4</span>(<span class="hljs-params">arr</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> arr.reduce(<span class="hljs-function">(<span class="hljs-params">result ,item</span>) =&gt;</span> &#123;
+		<span class="hljs-keyword">return</span> result.includes(item) ? result : [...result, item];
+	&#125;, []);
+&#125;
+<span class="hljs-built_in">console</span>.log(eliminate4(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN]</span></code></pre></div>
+
+<h2 id="方法五：排序后去重"><a href="#方法五：排序后去重" class="headerlink" title="方法五：排序后去重"></a>方法五：排序后去重</h2><div class="hljs"><pre><code class="hljs maxima">function eliminate5(arr) &#123;
+	<span class="hljs-built_in">let</span> <span class="hljs-built_in">copy</span> = arr.<span class="hljs-built_in">sort</span>((a, b) =&gt; a-b);
+	<span class="hljs-built_in">let</span> result = [];
+	<span class="hljs-built_in">let</span> fir = result[<span class="hljs-number">0</span>] = <span class="hljs-built_in">copy</span>[<span class="hljs-number">0</span>];
+	<span class="hljs-keyword">for</span>(<span class="hljs-built_in">let</span> i = <span class="hljs-number">1</span>, len = <span class="hljs-built_in">copy</span>.<span class="hljs-built_in">length</span>; i &lt; len; i++) &#123;
+		fir === <span class="hljs-built_in">copy</span>[i] || result.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">copy</span>[i]);
+		fir = <span class="hljs-built_in">copy</span>[i];
+	&#125;
 &#125;</code></pre></div>
 
-<p><code>注意：在最后一个属性添加逗号，会在IE7及更早的版本和Opera中导致错误</code></p>
-<ul>
-<li>这里的花括号是出现在<code>上下文表达式</code>中，故左边的花括号意味着对象字面量的开始；而出现在<code>语法上下文</code>，是代表语法块的开始</li>
-<li>如果形参需要传递大量的可选参数，ES5的做法是使用对象，不过ES6中新增了默认参数值的设定</li>
-</ul>
-<h4 id="3-属性访问-方括号所特有的"><a href="#3-属性访问-方括号所特有的" class="headerlink" title="3.属性访问(方括号所特有的)"></a>3.属性访问(方括号所特有的)</h4><ul>
-<li>通过变量访问属性</li>
-<li>导致语法错误的字符，比如中间有空格是我字符串</li>
-<li>属性名为关键字或保留字</li>
-</ul>
-<div class="note note-info">
-            <p>一般情况下，都是通过点语法访问属性，但是上面这些特殊情况使用点语法会报错，这时就只能使用方括号语法访问。</p>
-          </div>
-
-<h3 id="2-数组的创建"><a href="#2-数组的创建" class="headerlink" title="2.数组的创建"></a>2.数组的创建</h3><h4 id="1-new操作符-1"><a href="#1-new操作符-1" class="headerlink" title="1.new操作符"></a>1.new操作符</h4><h5 id="1-1-仅有一个数字时"><a href="#1-1-仅有一个数字时" class="headerlink" title="1.1 仅有一个数字时"></a>1.1 仅有一个数字时</h5><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// 注意：这时创建一个length为10的空数组</span></code></pre></div>
-
-<h5 id="1-2其他"><a href="#1-2其他" class="headerlink" title="1.2其他"></a>1.2其他</h5><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> music = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-string">&quot;jazz&quot;</span>); <span class="hljs-comment">// [&quot;jazz&quot;]</span>
-<span class="hljs-keyword">let</span> mix = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;juice&quot;</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// [3, &quot;juice&quot;, true]</span></code></pre></div>
-
-<h4 id="2-对象字面量-使用较多-1"><a href="#2-对象字面量-使用较多-1" class="headerlink" title="2.对象字面量(使用较多)"></a>2.对象字面量(使用较多)</h4><p>同样，数组字面量的创建并不会调用Array的构造函数</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">3</span>]; <span class="hljs-comment">// 这就是创建了一个数组项，要注意构造器的差异</span>
-<span class="hljs-keyword">let</span> mix = [<span class="hljs-number">3</span>, <span class="hljs-string">&quot;juice&quot;</span>, <span class="hljs-literal">true</span>];</code></pre></div>
-
-<p>哈哈，是不是字面量的创建更简洁，据说效率比构造器要高一点</p>
+<p>先排序，让后一个与前一个相比较，不相等则可以保留</p>
 
             </div>
             <hr>
@@ -266,7 +274,7 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -274,7 +282,7 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
+                      <a class="hover-with-bg" href="/tags/JS/">JS</a>
                     
                   </div>
                 
@@ -287,18 +295,12 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/28/unique/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JS之数组去重</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/05/SVC%E5%8F%A5%E5%9E%8B/">
-                        <span class="hidden-mobile">主谓补(SVC)|主谓宾宾补(SVOC)</span>
+                      <a href="/2020/10/25/Object%E7%B1%BB%E5%9E%8B%E5%88%9B%E5%BB%BA/">
+                        <span class="hidden-mobile">Object|Array之实例创建</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -467,7 +469,7 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Object|Array之实例创建&nbsp;",
+        "JS之数组去重&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
