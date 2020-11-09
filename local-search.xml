@@ -4,16 +4,41 @@
   
   
   <entry>
-    <title>JS之数组去重</title>
-    <link href="/2020/10/28/unique/"/>
-    <url>/2020/10/28/unique/</url>
+    <title>NPM版本语义化</title>
+    <link href="/2020/11/06/npm%E7%89%88%E6%9C%AC/"/>
+    <url>/2020/11/06/npm%E7%89%88%E6%9C%AC/</url>
     
-    <content type="html"><![CDATA[<h2 id="方法一：Set集合"><a href="#方法一：Set集合" class="headerlink" title="方法一：Set集合"></a>方法一：Set集合</h2><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>];<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate1</span>(<span class="hljs-params">arr</span>) </span>&#123;    <span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(arr)];&#125;<span class="hljs-built_in">console</span>.log(eliminate1(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN]</span></code></pre><p>Set构造器可以传入一个<code>可迭代的对象</code>，这时Set会自动将重复的元素移除，但是此时返回的是Set集合；直接返回是不对的，需要将该集合<code>转化为数组</code>，ES6中可以通过展开语法符展开，并使用数组字面量接收</p><h2 id="方法二-：indexOf方法"><a href="#方法二-：indexOf方法" class="headerlink" title="方法二 ：indexOf方法"></a>方法二 ：indexOf方法</h2><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate2</span>(<span class="hljs-params">arr</span>) </span>&#123;    <span class="hljs-keyword">let</span> result = [];    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = arr.length; i &lt; len; i++) &#123;        result.indexOf(arr[i]) === <span class="hljs-number">-1</span> &amp;&amp; result.push(arr[i]);    &#125;    <span class="hljs-keyword">return</span> result;&#125;<span class="hljs-built_in">console</span>.log(eliminate2(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN，NaN]</span></code></pre><p>这里有一个奇怪的点：NaN并不会被移除重复的，这是为什么呢？<code>NaN == NaN返回的是false</code>，indexOf方法的内部是通过===进行筛选的，故NaN永远都会返回-1，每一项NaN都会添加到result数组中。</p><h2 id="方法三-：filter方法"><a href="#方法三-：filter方法" class="headerlink" title="方法三 ：filter方法"></a>方法三 ：filter方法</h2><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate3</span>(<span class="hljs-params">arr</span>) </span>&#123;    <span class="hljs-keyword">return</span> arr.filter(<span class="hljs-function">(<span class="hljs-params">item, index, array</span>) =&gt;</span> &#123;        <span class="hljs-keyword">return</span> array.indexOf(item) === index;    &#125;);&#125;<span class="hljs-built_in">console</span>.log(eliminate3(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0]</span></code></pre><p>这里没有NaN就不会觉得奇怪了；array.indexOf(NaN) == -1不会等于原始项的下标</p><h2 id="方法四-：reduce方法"><a href="#方法四-：reduce方法" class="headerlink" title="方法四 ：reduce方法"></a>方法四 ：reduce方法</h2><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate4</span>(<span class="hljs-params">arr</span>) </span>&#123;<span class="hljs-keyword">return</span> arr.reduce(<span class="hljs-function">(<span class="hljs-params">result ,item</span>) =&gt;</span> &#123;<span class="hljs-keyword">return</span> result.includes(item) ? result : [...result, item];&#125;, []);&#125;<span class="hljs-built_in">console</span>.log(eliminate4(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN]</span></code></pre><h2 id="方法五：排序后去重"><a href="#方法五：排序后去重" class="headerlink" title="方法五：排序后去重"></a>方法五：排序后去重</h2><pre><code class="hljs maxima">function eliminate5(arr) &#123;<span class="hljs-built_in">let</span> <span class="hljs-built_in">copy</span> = arr.<span class="hljs-built_in">sort</span>((a, b) =&gt; a-b);<span class="hljs-built_in">let</span> result = [];<span class="hljs-built_in">let</span> fir = result[<span class="hljs-number">0</span>] = <span class="hljs-built_in">copy</span>[<span class="hljs-number">0</span>];<span class="hljs-keyword">for</span>(<span class="hljs-built_in">let</span> i = <span class="hljs-number">1</span>, len = <span class="hljs-built_in">copy</span>.<span class="hljs-built_in">length</span>; i &lt; len; i++) &#123;fir === <span class="hljs-built_in">copy</span>[i] || result.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">copy</span>[i]);fir = <span class="hljs-built_in">copy</span>[i];&#125;&#125;</code></pre><p>先排序，让后一个与前一个相比较，不相等则可以保留</p>]]></content>
+    <content type="html"><![CDATA[<ol><li>使用node.js时，我主要是使用NPM进行包的管理。但是包的更新速度是非常快的。这时候就不得不了解一下这些版本的具体含义了</li><li>任何版本都是由三个部分组成，即<code>主版本号.次版本号.补丁更新</code>，下面就依次解释一下它们的区别</li></ol><h3 id="1-主版本号"><a href="#1-主版本号" class="headerlink" title="1.主版本号"></a>1.主版本号</h3><p>会增加一个新功能，但是会破坏现有的依赖关系，也就是破坏向后兼容</p><h3 id="2-次版本号"><a href="#2-次版本号" class="headerlink" title="2.次版本号"></a>2.次版本号</h3><p>增加一个新功能，但是不会破会现有的依赖关系</p><h3 id="3-补丁更新"><a href="#3-补丁更新" class="headerlink" title="3.补丁更新"></a>3.补丁更新</h3><p>修复了bug</p><h3 id="4-package-json"><a href="#4-package-json" class="headerlink" title="4.package.json"></a>4.package.json</h3><p>一个项目所依赖的包全部都会记录在这个json中，这也就是为什么发布项目的文件夹不需要含有node_modules，因为只要有package.json这个文件，通过执行<code>npm install</code>命令时会自动去下载所依赖的所有包，并自动生成该文件夹。但是，package.json文件所描述的包的版本并不是项目真正下载的，这就跟版本前的插入符号有关</p><h3 id="5-插入符号"><a href="#5-插入符号" class="headerlink" title="5.插入符号"></a>5.插入符号</h3><h4 id="5-1"><a href="#5-1" class="headerlink" title="5.1 ~"></a>5.1 ~</h4><p>会自动下载主版本号和次版本号都一样，但是补丁号是最新的版本。</p><p>比如用这个<code>~4.5.0</code>举例，如果在你下载前发布了<code>4.5.4</code>，此时npm不会帮你下载4.5.0，而是下载4.5.4。但是，如果是次版本号更新了。比如<code>4.6.0</code>，npm只会帮你下载补丁号最高的那个版本，永远不会去下载不相同的次版本号</p><p>写法：~4.5.0 还可以写为 4.5.X</p><h4 id="5-1-1"><a href="#5-1-1" class="headerlink" title="5.1 ^"></a>5.1 ^</h4><p>这个范围就比较广了，这种类型的版本，npm会自动下载主版本号相同，次版本号和补丁号是最新的版本</p><p>写法：^4.5.0 还可以写为 4.X.X</p><h3 id="6-补充"><a href="#6-补充" class="headerlink" title="6.补充"></a>6.补充</h3><p>既然package.json不能查看所安装的真正的版本，可以在node_modules文件夹对应的包的src文件下的dist文件夹下的文件，有一些js文件会描述具体版本号</p>]]></content>
     
     
     <categories>
       
-      <category>面试</category>
+      <category>NPM</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>语义化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>防抖(debounce)和节流</title>
+    <link href="/2020/10/30/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"/>
+    <url>/2020/10/30/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</url>
+    
+    <content type="html"><![CDATA[<div class="note note-warning">            <p>JS中有一些事件是蛮特殊的，比如scroll、resize、keydown、keyup、mousemove等；如果这些事件在短时间内高频率触发，触发一次的话，就会调用一次事件处理函数；所以浏览器<code>处理这些事件处理函数</code>会极大地消耗资源。所以嘞，防抖和节流就是两种节省浏览器资源的手段</p>          </div><h2 id="1-补充：scrollTop"><a href="#1-补充：scrollTop" class="headerlink" title="1.补充：scrollTop"></a>1.补充：scrollTop</h2><p>一般我们获取滚动条距离顶部的距离(通常在<code>回到顶部</code>时需要使用)，是通过document.body.scrollTop或者document.documentElement.scrollTop获取；但是这两个有什么区别吗？<code>当其中有一个有效时，另一个就恒为0</code>；如果html文件使用DOCTYPE声明，document.body.scrollTop恒为0；若没声明document.documentElement.scrollTop恒为零</p><h2 id="2-为什么会消耗资源"><a href="#2-为什么会消耗资源" class="headerlink" title="2.为什么会消耗资源"></a>2.为什么会消耗资源</h2><p>就拿scroll事件举例子吧：</p><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showTop</span> (<span class="hljs-params"></span>) </span>&#123;<span class="hljs-keyword">let</span> top = <span class="hljs-built_in">document</span>.body.scrollTop || <span class="hljs-built_in">document</span>.documentElement.scrollTop;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;滚动条位置: &quot;</span>+ top);&#125;<span class="hljs-built_in">window</span>.onscroll = showTop;</code></pre><p>平时，我们也常常通过上、下按键移动滚动条；但是仅仅一次按一次，就调用了八次事件处理函数。</p><p><img src="https://cdn.jsdelivr.net/gh/GanYuRou/PictureBed@main/img/scrollTop.png" alt="scrollTop"></p><p>而如果我们并不需要获取滚动条每次滚动的距离；仅仅只是想获取频繁触发内的最后一次滚动条的距离；两者谁更消耗资源显而易见</p><h2 id="3-防抖-denounce"><a href="#3-防抖-denounce" class="headerlink" title="3.防抖(denounce)"></a>3.防抖(denounce)</h2><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;<span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;timer &amp;&amp; <span class="hljs-built_in">clearTimeout</span>(timer); <span class="hljs-comment">// 若编号存在，则清除</span>timer = <span class="hljs-built_in">setTimeout</span>(showTop, delay); <span class="hljs-comment">// 返回定时器编号</span>&#125;&#125;<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showTop</span> (<span class="hljs-params"></span>) </span>&#123;<span class="hljs-keyword">let</span> top = <span class="hljs-built_in">document</span>.body.scrollTop || <span class="hljs-built_in">document</span>.documentElement.scrollTop;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;滚动条位置: &quot;</span>+ top);&#125;<span class="hljs-built_in">window</span>.onscroll = debounce(showTop, <span class="hljs-number">1000</span>);</code></pre><p>主要利用JS中的闭包；</p><h2 id="4-节流"><a href="#4-节流" class="headerlink" title="4.节流"></a>4.节流</h2><h2 id="5-应用场景"><a href="#5-应用场景" class="headerlink" title="5.应用场景"></a>5.应用场景</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
       
     </categories>
     
@@ -21,6 +46,31 @@
     <tags>
       
       <tag>JS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JS之数组去重</title>
+    <link href="/2020/10/28/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/"/>
+    <url>/2020/10/28/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/</url>
+    
+    <content type="html"><![CDATA[<h2 id="方法一：Set集合"><a href="#方法一：Set集合" class="headerlink" title="方法一：Set集合"></a>方法一：Set集合</h2><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>];<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate1</span>(<span class="hljs-params">arr</span>) </span>&#123;    <span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(arr)];&#125;<span class="hljs-built_in">console</span>.log(eliminate1(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN]</span></code></pre><p>Set构造器可以传入一个<code>可迭代的对象</code>，这时Set会自动将重复的元素移除，但是此时返回的是Set集合；直接返回是不对的，需要将该集合<code>转化为数组</code>，ES6中可以通过展开语法符展开，并使用数组字面量接收</p><h2 id="方法二-：indexOf方法"><a href="#方法二-：indexOf方法" class="headerlink" title="方法二 ：indexOf方法"></a>方法二 ：indexOf方法</h2><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate2</span>(<span class="hljs-params">arr</span>) </span>&#123;    <span class="hljs-keyword">let</span> result = [];    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = arr.length; i &lt; len; i++) &#123;        result.indexOf(arr[i]) === <span class="hljs-number">-1</span> &amp;&amp; result.push(arr[i]);    &#125;    <span class="hljs-keyword">return</span> result;&#125;<span class="hljs-built_in">console</span>.log(eliminate2(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN，NaN]</span></code></pre><p>这里有一个奇怪的点：NaN并不会被移除重复的，这是为什么呢？<code>NaN == NaN返回的是false</code>，indexOf方法的内部是通过===进行筛选的，故NaN永远都会返回-1，每一项NaN都会添加到result数组中。</p><h2 id="方法三-：filter方法"><a href="#方法三-：filter方法" class="headerlink" title="方法三 ：filter方法"></a>方法三 ：filter方法</h2><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate3</span>(<span class="hljs-params">arr</span>) </span>&#123;    <span class="hljs-keyword">return</span> arr.filter(<span class="hljs-function">(<span class="hljs-params">item, index, array</span>) =&gt;</span> &#123;        <span class="hljs-keyword">return</span> array.indexOf(item) === index;    &#125;);&#125;<span class="hljs-built_in">console</span>.log(eliminate3(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0]</span></code></pre><p>这里没有NaN就不会觉得奇怪了；array.indexOf(NaN) == -1不会等于原始项的下标</p><h2 id="方法四-：reduce方法"><a href="#方法四-：reduce方法" class="headerlink" title="方法四 ：reduce方法"></a>方法四 ：reduce方法</h2><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eliminate4</span>(<span class="hljs-params">arr</span>) </span>&#123;<span class="hljs-keyword">return</span> arr.reduce(<span class="hljs-function">(<span class="hljs-params">result ,item</span>) =&gt;</span> &#123;<span class="hljs-keyword">return</span> result.includes(item) ? result : [...result, item];&#125;, []);&#125;<span class="hljs-built_in">console</span>.log(eliminate4(array)); <span class="hljs-comment">//[3, 5, 4, 6, 0, NaN]</span></code></pre><h2 id="方法五：排序后去重"><a href="#方法五：排序后去重" class="headerlink" title="方法五：排序后去重"></a>方法五：排序后去重</h2><pre><code class="hljs maxima">function eliminate5(arr) &#123;<span class="hljs-built_in">let</span> <span class="hljs-built_in">copy</span> = arr.<span class="hljs-built_in">sort</span>((a, b) =&gt; a-b);<span class="hljs-built_in">let</span> result = [];<span class="hljs-built_in">let</span> fir = result[<span class="hljs-number">0</span>] = <span class="hljs-built_in">copy</span>[<span class="hljs-number">0</span>];<span class="hljs-keyword">for</span>(<span class="hljs-built_in">let</span> i = <span class="hljs-number">1</span>, len = <span class="hljs-built_in">copy</span>.<span class="hljs-built_in">length</span>; i &lt; len; i++) &#123;fir === <span class="hljs-built_in">copy</span>[i] || result.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">copy</span>[i]);fir = <span class="hljs-built_in">copy</span>[i];&#125;&#125;</code></pre><p>先排序，让后一个与前一个相比较，不相等则可以保留</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数组去重</tag>
       
     </tags>
     
@@ -38,14 +88,14 @@
     
     <categories>
       
-      <category>前端</category>
+      <category>ES5</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JS基础</tag>
+      <tag>JS笔记</tag>
       
     </tags>
     
@@ -63,14 +113,14 @@
     
     <categories>
       
-      <category>英语</category>
+      <category>英语语法</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>基础语法</tag>
+      <tag>五大基本句型</tag>
       
     </tags>
     
@@ -88,14 +138,14 @@
     
     <categories>
       
-      <category>前端</category>
+      <category>ES5</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JS基础</tag>
+      <tag>JS笔记</tag>
       
     </tags>
     

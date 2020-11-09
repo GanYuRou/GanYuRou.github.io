@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Gan Yurou">
   <meta name="keywords" content="">
-  <title>Object|Array之实例创建 - Yurou&#39;s 小栈</title>
+  <title>NPM版本语义化 - Yurou&#39;s 小栈</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,7 +152,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/GanYuRou/PictureBed@main/img/bamboo.webp') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -167,8 +167,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-25 19:24" pubdate>
-        2020年10月25日 晚上
+      <time datetime="2020-11-06 19:10" pubdate>
+        2020年11月6日 晚上
       </time>
     </span>
   
@@ -179,7 +179,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      486 字
+      534 字
     </span>
   
 
@@ -219,44 +219,23 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Object|Array之实例创建</h1>
+            <h1 style="display: none">NPM版本语义化</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="1-对象实例的创建"><a href="#1-对象实例的创建" class="headerlink" title="1.对象实例的创建"></a>1.对象实例的创建</h3><h4 id="1-new操作符"><a href="#1-new操作符" class="headerlink" title="1.new操作符"></a>1.new操作符</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> person = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();
-<span class="hljs-comment">//可以通过访问属性来动态创建属性</span>
-person.name = <span class="hljs-string">&quot;Sarry&quot;</span>;
-person.age = <span class="hljs-number">20</span>;</code></pre></div>
-
-<h4 id="2-对象字面量-使用较多"><a href="#2-对象字面量-使用较多" class="headerlink" title="2.对象字面量(使用较多)"></a>2.对象字面量(使用较多)</h4><p>对象定义的简写形式，目的在于简化创建大量的属性的对象的过程。但是需要注意的是，对象字面量的创建并不会调用Object的构造函数</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> individual = &#123;
-    name: <span class="hljs-string">&quot;Sarry&quot;</span>,
-    age: <span class="hljs-number">20</span>
-&#125;</code></pre></div>
-
-<p><code>注意：在最后一个属性添加逗号，会在IE7及更早的版本和Opera中导致错误</code></p>
-<ul>
-<li>这里的花括号是出现在<code>上下文表达式</code>中，故左边的花括号意味着对象字面量的开始；而出现在<code>语法上下文</code>，是代表语法块的开始</li>
-<li>如果形参需要传递大量的可选参数，ES5的做法是使用对象，不过ES6中新增了默认参数值的设定</li>
-</ul>
-<h4 id="3-属性访问-方括号所特有的"><a href="#3-属性访问-方括号所特有的" class="headerlink" title="3.属性访问(方括号所特有的)"></a>3.属性访问(方括号所特有的)</h4><ul>
-<li>通过变量访问属性</li>
-<li>导致语法错误的字符，比如中间有空格是我字符串</li>
-<li>属性名为关键字或保留字</li>
-</ul>
-<div class="note note-info">
-            <p>一般情况下，都是通过点语法访问属性，但是上面这些特殊情况使用点语法会报错，这时就只能使用方括号语法访问。</p>
-          </div>
-
-<h3 id="2-数组的创建"><a href="#2-数组的创建" class="headerlink" title="2.数组的创建"></a>2.数组的创建</h3><h4 id="1-new操作符-1"><a href="#1-new操作符-1" class="headerlink" title="1.new操作符"></a>1.new操作符</h4><h5 id="1-1-仅有一个数字时"><a href="#1-1-仅有一个数字时" class="headerlink" title="1.1 仅有一个数字时"></a>1.1 仅有一个数字时</h5><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// 注意：这时创建一个length为10的空数组</span></code></pre></div>
-
-<h5 id="1-2其他"><a href="#1-2其他" class="headerlink" title="1.2其他"></a>1.2其他</h5><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> music = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-string">&quot;jazz&quot;</span>); <span class="hljs-comment">// [&quot;jazz&quot;]</span>
-<span class="hljs-keyword">let</span> mix = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;juice&quot;</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// [3, &quot;juice&quot;, true]</span></code></pre></div>
-
-<h4 id="2-对象字面量-使用较多-1"><a href="#2-对象字面量-使用较多-1" class="headerlink" title="2.对象字面量(使用较多)"></a>2.对象字面量(使用较多)</h4><p>同样，数组字面量的创建并不会调用Array的构造函数</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">3</span>]; <span class="hljs-comment">// 这就是创建了一个数组项，要注意构造器的差异</span>
-<span class="hljs-keyword">let</span> mix = [<span class="hljs-number">3</span>, <span class="hljs-string">&quot;juice&quot;</span>, <span class="hljs-literal">true</span>];</code></pre></div>
-
-<p>哈哈，是不是字面量的创建更简洁，据说效率比构造器要高一点</p>
+              <ol>
+<li>使用node.js时，我主要是使用NPM进行包的管理。但是包的更新速度是非常快的。这时候就不得不了解一下这些版本的具体含义了</li>
+<li>任何版本都是由三个部分组成，即<code>主版本号.次版本号.补丁更新</code>，下面就依次解释一下它们的区别</li>
+</ol>
+<h3 id="1-主版本号"><a href="#1-主版本号" class="headerlink" title="1.主版本号"></a>1.主版本号</h3><p>会增加一个新功能，但是会破坏现有的依赖关系，也就是破坏向后兼容</p>
+<h3 id="2-次版本号"><a href="#2-次版本号" class="headerlink" title="2.次版本号"></a>2.次版本号</h3><p>增加一个新功能，但是不会破会现有的依赖关系</p>
+<h3 id="3-补丁更新"><a href="#3-补丁更新" class="headerlink" title="3.补丁更新"></a>3.补丁更新</h3><p>修复了bug</p>
+<h3 id="4-package-json"><a href="#4-package-json" class="headerlink" title="4.package.json"></a>4.package.json</h3><p>一个项目所依赖的包全部都会记录在这个json中，这也就是为什么发布项目的文件夹不需要含有node_modules，因为只要有package.json这个文件，通过执行<code>npm install</code>命令时会自动去下载所依赖的所有包，并自动生成该文件夹。但是，package.json文件所描述的包的版本并不是项目真正下载的，这就跟版本前的插入符号有关</p>
+<h3 id="5-插入符号"><a href="#5-插入符号" class="headerlink" title="5.插入符号"></a>5.插入符号</h3><h4 id="5-1"><a href="#5-1" class="headerlink" title="5.1 ~"></a>5.1 ~</h4><p>会自动下载主版本号和次版本号都一样，但是补丁号是最新的版本。</p>
+<p>比如用这个<code>~4.5.0</code>举例，如果在你下载前发布了<code>4.5.4</code>，此时npm不会帮你下载4.5.0，而是下载4.5.4。但是，如果是次版本号更新了。比如<code>4.6.0</code>，npm只会帮你下载补丁号最高的那个版本，永远不会去下载不相同的次版本号</p>
+<p>写法：~4.5.0 还可以写为 4.5.X</p>
+<h4 id="5-1-1"><a href="#5-1-1" class="headerlink" title="5.1 ^"></a>5.1 ^</h4><p>这个范围就比较广了，这种类型的版本，npm会自动下载主版本号相同，次版本号和补丁号是最新的版本</p>
+<p>写法：^4.5.0 还可以写为 4.X.X</p>
+<h3 id="6-补充"><a href="#6-补充" class="headerlink" title="6.补充"></a>6.补充</h3><p>既然package.json不能查看所安装的真正的版本，可以在node_modules文件夹对应的包的src文件下的dist文件夹下的文件，有一些js文件会描述具体版本号</p>
 
             </div>
             <hr>
@@ -266,7 +245,7 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/ES5/">ES5</a>
+                      <a class="hover-with-bg" href="/categories/NPM/">NPM</a>
                     
                   </div>
                 
@@ -274,7 +253,7 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JS%E7%AC%94%E8%AE%B0/">JS笔记</a>
+                      <a class="hover-with-bg" href="/tags/%E8%AF%AD%E4%B9%89%E5%8C%96/">语义化</a>
                     
                   </div>
                 
@@ -287,18 +266,12 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/28/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JS之数组去重</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/05/SVC%E5%8F%A5%E5%9E%8B/">
-                        <span class="hidden-mobile">主谓补(SVC)|主谓宾宾补(SVOC)</span>
+                      <a href="/2020/10/30/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+                        <span class="hidden-mobile">防抖(debounce)和节流</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -467,7 +440,7 @@ person.age = <span class="hljs-number">20</span>;</code></pre></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Object|Array之实例创建&nbsp;",
+        "NPM版本语义化&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
